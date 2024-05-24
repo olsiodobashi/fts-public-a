@@ -1,0 +1,105 @@
+@import "../variables";
+
+main {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   min-height: 100vh;
+   width: 660px;
+
+   @media screen and (max-width: 660px) {
+      width: 100%;
+      margin: 0;
+      padding: 0 10px;
+   }
+}
+
+.form-field {
+   background-color: $accent;
+   border: 1px solid $accent;
+   border-radius: 3px;
+   color: white;
+   overflow: hidden;
+
+   .prefix {
+      padding: 0 8px;
+   }
+}
+
+ul {
+   display: flex;
+   flex-direction: row;
+   list-style: none;
+   margin-top: 20px;
+
+   li {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      text-align: center;
+
+      + li {
+         margin-left: 30px;
+      }
+   }
+
+   &.hidden {
+      display: none;
+   }
+
+   @media screen and (max-width: 660px) {
+      flex-direction: column;
+      align-items: center;
+
+      li + li {
+         margin-left: 0;
+      }
+   }
+}
+
+label {
+   line-height: 2.5;
+}
+
+input[type="checkbox"] {
+   accent-color: $accent;
+   cursor: pointer;
+   display: block;
+   height: 25px;
+   margin: 0 auto;
+   width: 25px;
+}
+
+input[type="number"] {
+   border: 0;
+   font-size: 1.1rem;
+   padding: 10px 5px;
+   text-align: center;
+   min-width: 65px;
+
+   &:disabled {
+      background-color: lightgray;
+   }
+}
+
+.undo-button {
+   background-color: $white;
+   border: 1px solid $accent;
+   border-radius: 50%;
+   bottom: 0;
+   color: $accent;
+   cursor: pointer;
+   font-size: 2rem;
+   line-height: 1.4;
+   margin: 20px;
+   padding: 0 15px 4px;
+   position: absolute;
+   right: 0;
+   transform: rotateZ(-180deg);
+
+   &:hover {
+      background-color: $accent;
+      color: $white;
+   }
+}
