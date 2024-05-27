@@ -1,31 +1,32 @@
 <main>
-   <section>
-      <h2>Pizza</h2>
-      <br>
+    <section>
+        <h2>Pizza</h2>
+        <br>
 
-      <app-accordion *ngFor="let item of items" [title]='item.name' [isOpen]='openItemId === item.itemId'
-                     (onAccordionToggle)="toggleCollapse(item.itemId)">
-         <ul [attr.aria-hidden]='openItemId === item.itemId'>
-            <li *ngFor="let size of itemSizes">
-               <label>
-                  <input type="checkbox" [checked]="findPrices(item, size) !== 0"
-                         (change)="toggleSize(item.itemId, size.sizeId, $event)" name="size"
-                         [attr.aria-label]='"Selected " + size.name.toLowerCase() + " size."'>
-                  {{ size.name }}
-               </label>
+        <app-accordion *ngFor="let item of items; let i = index" [title]='item.name' [isOpen]='openItemId === item.itemId'
+                       (onAccordionToggle)="toggleCollapse(item.itemId)">
+            <ul [@accordionState]='openItemId === item.itemId ? "expanded" : "collapsed"'>
+                <li *ngFor="let size of itemSizes; let j = index">
+                    <div class="checkbox">
+                        <input type="checkbox" [checked]="checkboxStates[item.itemId][size.sizeId]"
+                               (change)="toggleSize(item.itemId, size.sizeId, $event)" [id]="'size-'+j+'_'+i" name="size"
+                               [attr.aria-label]='"Selected " + size.name.toLowerCase() + " size."'>
+                        <label [for]="'size-'+j+'_'+i">{{ size.name }}</label>
+                    </div>
 
-               <div class="form-field">
-                  <span class="prefix">&dollar;</span>
-                  <input type="number" step="0.1" min="1" max="100" [value]="findPrices(item, size)"
-                         [disabled]="findPrices(item, size) === 0"
-                         (input)="updatePrice(item.itemId, size.sizeId, $event)" name="price"
-                         [attr.aria-label]="'Price for ' + size.name.toLowerCase() + ' pizza'">
-               </div>
-            </li>
-         </ul>
-         <button class="undo-button" title="Undo changes" aria-label="Undo changes" *ngIf="changesMade[item.itemId]" (click)="undoChanges(item.itemId)">
-            &circlearrowleft;
-         </button>
-      </app-accordion>
-   </section>
+                    <div class="form-field">
+                        <span class="prefix">&dollar;</span>
+                        <input type="number" step="0.1" min="1" max="100" [value]="findPrices(item, size)"
+                               [disabled]="!checkboxStates[item.itemId][size.sizeId]"
+                               (input)="updatePrice(item.itemId, size.sizeId, $event)" name="price"
+                               [attr.aria-label]="'Price for ' + size.name.toLowerCase() + ' pizza'">
+                    </div>
+                </li>
+            </ul>
+            <button class="undo-button" title="Undo changes" aria-label="Undo changes" *ngIf="changesMade[item.itemId]"
+                    (click)="undoChanges(item.itemId)">
+                &circlearrowleft;
+            </button>
+        </app-accordion>
+    </section>
 </main>

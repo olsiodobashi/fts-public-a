@@ -4,10 +4,10 @@ import {CommonModule, NgForOf} from "@angular/common";
 @Component({
    selector: 'app-accordion',
    standalone: true,
-   imports: [
-      NgForOf,
-      CommonModule
-   ],
+    imports: [
+        NgForOf,
+        CommonModule
+    ],
    templateUrl: './accordion.component.html',
    styleUrl: './accordion.component.scss'
 })

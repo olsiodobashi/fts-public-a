@@ -1,11 +1,11 @@
 <section class="menu-variation" [ngClass]='{"open": isOpen }' role="group">
-   <button (click)="onAccordionToggle.emit()" class="accordion-header" aria-description="Accordion header"
-           [attr.aria-expanded]='isOpen'>
-      <span aria-hidden="true">{{ isOpen ? '▲' : '▼' }}</span>
-      {{ title }}
-   </button>
+    <button (click)="onAccordionToggle.emit()" class="accordion-header" aria-description="Accordion header"
+            [attr.aria-expanded]='isOpen'>
+        <span aria-hidden="true">
+            <img [ngClass]='{"mirrored": isOpen }' [attr.src]="'assets/chevron.svg'" width="20px" height="20px" alt="Accordion chevron icon" />
+        </span>
+        {{ title }}
+    </button>
 
-   <ng-container *ngIf="isOpen">
-      <ng-content></ng-content>
-   </ng-container>
+    <ng-content></ng-content>
 </section>

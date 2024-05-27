@@ -1,3 +1,5 @@
+@import "./theme/checkbox";
+
 * { box-sizing: border-box }
 
 html, body, h1, h2, h3, p, ul {
@@ -14,4 +16,13 @@ body {
 
 section {
    width: 100%;
+}
+
+// Due to component encapsulation
+.menu-variation:not(.open) .undo-button {
+   margin-bottom: 5px;
+}
+
+.mirrored {
+   transform: rotate(180deg);
 }

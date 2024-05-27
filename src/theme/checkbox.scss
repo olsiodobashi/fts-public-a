@@ -1,0 +1,67 @@
+@import "./variables";
+
+.checkbox {
+  display: block;
+  margin-bottom: 15px;
+  padding-top: 40px;
+
+  input {
+    cursor: pointer;
+    display: none;
+    height: initial;
+    margin-bottom: 0;
+    opacity: 0;
+    padding: 0;
+    visibility: hidden;
+    width: initial;
+
+    &:checked + label:before {
+      background-color: $accent;
+    }
+
+    &:checked + label:after {
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: block;
+      height: 14px;
+      left: 50%;
+      opacity: 1;
+      position: absolute;
+      top: -33px;
+      transform: rotate(45deg) translateX(-50%);
+      width: 6px;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+      background-color: transparent;
+      border: 2px solid $accent;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      content: '';
+      cursor: pointer;
+      display: inline-block;
+      left: 50%;
+      margin-right: 5px;
+      padding: 12px;
+      position: absolute;
+      top: -40px;
+      transform: translateX(-50%);
+      transition: background-color .3s ease;
+      vertical-align: middle;
+    }
+
+    &:after {
+      border-color: transparent;
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%);
+      transition: opacity .3s ease;
+    }
+  }
+}
